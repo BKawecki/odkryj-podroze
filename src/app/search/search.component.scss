@@ -4,11 +4,14 @@
     background-color: aliceblue;
     padding-top: 25px;
     padding-left: 25px;
+    p {
+        font-weight: 500;
+    }
     &__container {
         margin: 25px 0 0 25px;
-        padding: 10px;
+        padding: 20px;
         background-color: white;
-        width: max-content;
+        max-width: 330px;
         border-radius: 16px;
         border: 5px solid #242582;
         box-shadow: 9px 8px 24px 0px rgba(66, 68, 90, 1);
@@ -16,8 +19,51 @@
     &__title {
         text-align: center;
         font-size: 24px;
+        margin-bottom: 20px;
+    }
+    &__from {
+        p {
+            font-size: 16px;
+        }
+        margin-bottom: 20px;
+    }
+    &__destination {
+        p {
+            font-size: 16px;
+        }
+        margin-bottom: 20px;
+    }
+    &__when {
+        p {
+            font-size: 16px;
+        }
+        margin-bottom: 20px;
+    }
+    &__budget {
+        p {
+            font-size: 16px;
+        }
+        margin-bottom: 20px;
+    }
+    &__place {
+        padding: 5px;
+    }
+    &__options {
+        margin-bottom: 20px;
+    }
+    &__option {
+        margin: 0;
+        padding: 0;
     }
     .example-full-width {
         width: 100%;
+    }
+    .mdc-evolution-chip-set {
+        justify-content: center;
+    }
+    
+    &__button {
+        text-align: center;
+        margin-bottom: 20px;
     }
 }
