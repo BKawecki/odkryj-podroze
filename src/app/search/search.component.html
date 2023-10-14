@@ -1,0 +1,51 @@
+<div class="search">
+    <div class="search__container">
+        <div class="search__title">
+            <p>Wyszukaj podróż</p>
+        </div>
+        <div class="search__from">
+            <p>Skąd:</p>
+            <mat-checkbox class="example-margin">Warszawa</mat-checkbox>
+            <mat-checkbox class="example-margin">Kraków</mat-checkbox>
+            <mat-checkbox class="example-margin">Gdańsk</mat-checkbox>
+        </div>
+        <div class="search__destination">
+            <p>Dokąd:</p>
+            <mat-checkbox class="example-margin">Londyn</mat-checkbox>
+            <mat-checkbox class="example-margin">Berlin</mat-checkbox>
+            <mat-checkbox class="example-margin">Madryt</mat-checkbox>
+        </div>
+        <div class="search__when">
+            <p>Kiedy:</p>
+            <mat-form-field>
+                <mat-label>Wybierz daty podróży</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                  <input matStartDate placeholder="Wylot">
+                  <input matEndDate placeholder="Przylot">
+                </mat-date-range-input>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker></mat-date-range-picker>
+              </mat-form-field>
+        </div>
+        <div class="search__budget">
+            <p>Budżet:</p>
+            <form class="example-form">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Twój budżet</mat-label>
+                  <input matInput placeholder="Wpisz kwotę w złotówkach">
+                </mat-form-field>
+            </form>              
+        </div>
+        <mat-chip-listbox multiple>
+            <mat-chip-option>
+                jeden
+            </mat-chip-option>
+            <mat-chip-option>
+                dwa
+            </mat-chip-option>
+            <mat-chip-option>
+                trzy
+            </mat-chip-option>
+        </mat-chip-listbox>
+    </div>
+</div>
