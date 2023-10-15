@@ -1,12 +1,12 @@
 .search {
     background-color: aliceblue;
-    padding-top: 25px;
-    padding-left: 25px;
+    padding: 25px 25px 0 25px;
     display: flex;
     p {
         font-weight: 500;
     }
     &__container {
+        height: max-content;
         padding: 20px;
         background-color: white;
         max-width: 330px;
@@ -63,5 +63,13 @@
     &__button {
         text-align: center;
         margin-bottom: 20px;
+    }
+    &__cards {
+        max-width: 1000px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 45px;
+        margin: 0 auto;
     }
 }

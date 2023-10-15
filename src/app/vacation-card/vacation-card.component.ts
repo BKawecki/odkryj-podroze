@@ -8,4 +8,6 @@ import { Component, Input } from '@angular/core';
 export class VacationCardComponent {
   @Input() width = '';
   @Input() img = '';
+  @Input() title = '';
+  @Input() subtitle = '';
 }
