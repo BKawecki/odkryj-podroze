@@ -2,6 +2,9 @@
     background-image: url('/assets/Madrid.jpg');
     background-size: cover;
   }
+  img {
+    max-height: 200px;
+  }
   .mat-mdc-card-content {
     padding: 16px;
 }
