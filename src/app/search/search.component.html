@@ -6,19 +6,12 @@
         <div class="search__from">
             <p>Skąd:</p>
             <div class="search__from_places">
-                <mat-checkbox class="search__place">Warszawa</mat-checkbox>
-                <mat-checkbox class="search__place">Kraków</mat-checkbox>
-                <mat-checkbox class="search__place">Gdańsk</mat-checkbox>
-                <mat-checkbox class="search__place">Wrocław</mat-checkbox>
+                <mat-checkbox class="search__place" *ngFor="let place of fromPlaces">{{ place }}</mat-checkbox>
             </div>
         </div>
         <div class="search__destination">
             <p>Dokąd:</p>
-            <mat-checkbox class="search__place">Londyn</mat-checkbox>
-            <mat-checkbox class="search__place">Malediwy</mat-checkbox>
-            <mat-checkbox class="search__place">Berlin</mat-checkbox>
-            <mat-checkbox class="search__place">Bali</mat-checkbox>
-            <mat-checkbox class="search__place">Madryt</mat-checkbox>
+            <mat-checkbox class="search__place" *ngFor="let place of toPlaces">{{ place }}</mat-checkbox>
         </div>
         <div class="search__when">
             <p>Kiedy:</p>
@@ -42,14 +35,8 @@
             </form>              
         </div>
         <mat-chip-listbox multiple class="search__options">
-            <mat-chip-option>
-                All-inclusive
-            </mat-chip-option>
-            <mat-chip-option>
-                Last minute
-            </mat-chip-option>
-            <mat-chip-option>
-                City Break
+            <mat-chip-option *ngFor="let option of tripOptions">
+                {{ option }}
             </mat-chip-option>
         </mat-chip-listbox>
         <div class="search__button">

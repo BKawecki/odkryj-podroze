@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class SearchComponent {
 
+  fromPlaces = ['Warszawa', 'Kraków', 'Gdańsk', 'Wrocław'];
+  toPlaces = ['Londyn', 'Malediwy', 'Berlin', 'Bali', 'Madryt'];
+  tripOptions = ['All-inclusive', 'Last minute', 'City Break'];
 }

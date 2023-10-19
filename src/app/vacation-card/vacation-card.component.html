@@ -1,4 +1,4 @@
-<mat-card class="example-card" [ngStyle]="{'max-width': width}">
+<mat-card class="example-card" [ngStyle]="{'width': width}">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>{{ title }}</mat-card-title>
@@ -8,7 +8,11 @@
     <mat-card-content>
       <p>
         Wycieczka do: {{title}}
+      </p>
+      <p>
         W terminie:
+      </p>
+      <p>
         Kosztuje: {{cost}}
       </p>
     </mat-card-content>

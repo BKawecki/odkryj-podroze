@@ -19,6 +19,13 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import { VacationCardComponent } from './vacation-card/vacation-card.component';
+import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+
+const appRoutes: Routes = [
+  { path: 'users', component: LoginComponent},
+  { path: '', component: SearchComponent},
+];
 
 
 @NgModule({
@@ -26,7 +33,8 @@ import { VacationCardComponent } from './vacation-card/vacation-card.component';
     AppComponent,
     HeaderComponent,
     SearchComponent,
-    VacationCardComponent
+    VacationCardComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +52,8 @@ import { VacationCardComponent } from './vacation-card/vacation-card.component';
     ReactiveFormsModule,
     MatNativeDateModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
