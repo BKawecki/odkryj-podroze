@@ -6,12 +6,12 @@
         <div class="search__from">
             <p>Skąd:</p>
             <div class="search__from_places">
-                <mat-checkbox class="search__place" *ngFor="let place of fromPlaces">{{ place }}</mat-checkbox>
+                <mat-checkbox [value]="place" class="search__place" *ngFor="let place of fromPlaces">{{ place }}</mat-checkbox>
             </div>
         </div>
         <div class="search__destination">
             <p>Dokąd:</p>
-            <mat-checkbox class="search__place" *ngFor="let place of toPlaces">{{ place }}</mat-checkbox>
+            <mat-checkbox [value]="place" (change)="selectPlace($event)" class="search__place" *ngFor="let place of toPlaces">{{ place }}</mat-checkbox>
         </div>
         <div class="search__when">
             <p>Kiedy:</p>
@@ -45,8 +45,7 @@
     </div>
     <div class="search__cards">
         <app-vacation-card 
-        *ngFor="let trip of trips"
-        [width]="'300px'" [img]="trip.url" [title]="trip.title" [subtitle]="trip.subtitle" [cost]="trip.cost"></app-vacation-card>
-
+        *ngFor="let trip of filteredTrips"
+        [width]="'300px'" [img]="trip.url " [title]="trip.title" [country]="trip.country" [cost]="trip.cost"></app-vacation-card>
     </div>
 </div>

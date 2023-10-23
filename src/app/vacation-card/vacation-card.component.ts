@@ -9,6 +9,6 @@ export class VacationCardComponent {
   @Input() width = '';
   @Input() img = '';
   @Input() title = '';
-  @Input() subtitle = '';
+  @Input() country = '';
   @Input() cost = 0;
 }

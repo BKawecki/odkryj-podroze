@@ -1,6 +1,6 @@
 export interface Trip {
     title: string;
-    subtitle: string;
+    country: string;
     url: string;
     cost: number;
 }
