@@ -10,5 +10,5 @@ export class VacationCardComponent {
   @Input() img = '';
   @Input() title = '';
   @Input() subtitle = '';
-  @Input() cost = '';
+  @Input() cost = 0;
 }

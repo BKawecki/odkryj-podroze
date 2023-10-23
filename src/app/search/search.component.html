@@ -44,10 +44,9 @@
         </div>
     </div>
     <div class="search__cards">
-        <app-vacation-card [width]="'300px'" [img]="'/assets/Londyn.jpeg'" [title]="'Londyn'" [subtitle]="'Anglia'" [cost]="'2000'"></app-vacation-card>
-        <app-vacation-card [width]="'300px'" [img]="'/assets/Malediwy.jpg'" [title]="'Malediwy'" [cost]="'8000'"></app-vacation-card>
-        <app-vacation-card [width]="'300px'" [img]="'/assets/Berlin.jpg'" [title]="'Berlin'" [subtitle]="'Niemcy'" [cost]="'1500'"></app-vacation-card>
-        <app-vacation-card [width]="'300px'" [img]="'/assets/Bali.jpg'" [title]="'Bali'" [subtitle]="'Indonezja'" [cost]="'7000'"></app-vacation-card>
-        <app-vacation-card [width]="'300px'" [img]="'/assets/Madrid.jpg'" [title]="'Madryt'" [subtitle]="'Hiszpania'" [cost]="'2500'"></app-vacation-card>
+        <app-vacation-card 
+        *ngFor="let trip of trips"
+        [width]="'300px'" [img]="trip.url" [title]="trip.title" [subtitle]="trip.subtitle" [cost]="trip.cost"></app-vacation-card>
+
     </div>
 </div>
