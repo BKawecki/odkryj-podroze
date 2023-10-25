@@ -21,6 +21,7 @@ import {MatCardModule} from '@angular/material/card';
 import { VacationCardComponent } from './vacation-card/vacation-card.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 const appRoutes: Routes = [
   { path: 'users', component: LoginComponent},
@@ -53,7 +54,8 @@ const appRoutes: Routes = [
     MatNativeDateModule,
     MatInputModule,
     MatCardModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

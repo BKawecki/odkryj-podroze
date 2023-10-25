@@ -32,10 +32,28 @@ const TRIPS: Trip[] = [
     cost: 1800
   },
   {
-    title: 'Madryt',
-    country: 'Hiszpania',
-    url: 'assets/Madrid.jpg',
-    cost: 2000
+    title: 'Praga',
+    country: 'Czechy',
+    url: 'assets/Praga.jpg',
+    cost: 1600
+  },
+  {
+    title: 'Rzym',
+    country: 'Włochy',
+    url: 'assets/Rzym.jpg',
+    cost: 3000
+  },
+  {
+    title: 'Paryż',
+    country: 'Francja',
+    url: 'assets/Paryz.jpg',
+    cost: 1800
+  },
+  {
+    title: 'Berlin',
+    country: 'Niemcy',
+    url: 'assets/Berlin.jpg',
+    cost: 1400
   }
 ];
 

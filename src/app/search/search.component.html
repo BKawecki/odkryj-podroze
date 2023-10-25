@@ -39,13 +39,19 @@
                 {{ option }}
             </mat-chip-option>
         </mat-chip-listbox>
-        <div class="search__button">
-            <button mat-raised-button color="primary">Szukaj</button>
-        </div>
     </div>
     <div class="search__cards">
         <app-vacation-card 
         *ngFor="let trip of filteredTrips"
         [width]="'300px'" [img]="trip.url " [title]="trip.title" [country]="trip.country" [cost]="trip.cost"></app-vacation-card>
+        <div class="search__paginator">
+            <mat-paginator #paginator
+            [length]="this.trips.length"
+            [pageSize]="6"
+            [pageSizeOptions]="[6]"
+            (page)="onPageChange($event)"
+            aria-label="Select page">
+        </mat-paginator>
+        </div>
     </div>
 </div>
