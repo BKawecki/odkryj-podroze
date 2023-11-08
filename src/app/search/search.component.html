@@ -18,8 +18,8 @@
             <mat-form-field>
                 <mat-label>Wybierz daty podróży</mat-label>
                 <mat-date-range-input [rangePicker]="picker">
-                  <input matStartDate placeholder="Wylot">
-                  <input matEndDate placeholder="Przylot">
+                  <input matStartDate placeholder="Wylot" #startDate>
+                  <input matEndDate placeholder="Przylot" (dateChange)="onDateChange(startDate, endDate)" #endDate>
                 </mat-date-range-input>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-date-range-picker #picker></mat-date-range-picker>
@@ -30,7 +30,7 @@
             <form class="example-form">
                 <mat-form-field class="example-full-width">
                   <mat-label>Twój budżet</mat-label>
-                  <input matInput placeholder="Wpisz kwotę w złotówkach">
+                  <input matInput placeholder="Wpisz kwotę w złotówkach" [(ngModel)]="enteredCost" (input)="onInput()" name="costInput">
                 </mat-form-field>
             </form>              
         </div>
@@ -42,14 +42,12 @@
     </div>
     <div class="search__cards">
         <app-vacation-card 
-        *ngFor="let trip of filteredTrips"
+        *ngFor="let trip of displayedTrips"
         [width]="'300px'" [img]="trip.url " [title]="trip.title" [country]="trip.country" [cost]="trip.cost"></app-vacation-card>
         <div class="search__paginator">
-            <mat-paginator #paginator
-            [length]="this.trips.length"
+        <mat-paginator #paginator
+            [length]="this.filteredTrips.length"
             [pageSize]="6"
-            [pageSizeOptions]="[6]"
-            (page)="onPageChange($event)"
             aria-label="Select page">
         </mat-paginator>
         </div>

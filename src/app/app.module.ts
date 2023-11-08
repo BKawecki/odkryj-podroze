@@ -22,10 +22,12 @@ import { VacationCardComponent } from './vacation-card/vacation-card.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { RegisterComponent } from './register/register.component';
 
 const appRoutes: Routes = [
   { path: 'users', component: LoginComponent},
   { path: '', component: SearchComponent},
+  { path: 'register', component: RegisterComponent }
 ];
 
 
@@ -35,7 +37,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     SearchComponent,
     VacationCardComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
