@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { SearchService } from '../services/search.service';
 import { Trip } from '../models/trip';
 import { take } from 'rxjs';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatInput } from '@angular/material/input';
+import { MatEndDate, MatStartDate } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-search',
@@ -12,6 +13,8 @@ import { MatInput } from '@angular/material/input';
 })
 export class SearchComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
+  @ViewChild('startDate', { static: true }) startDate!: ElementRef;
+  @ViewChild('endDate', { static: true }) endDate!: ElementRef;
   enteredCost!: number;
   displayedTrips: any[] = [];
   trips!: Array<Trip>;
@@ -76,46 +79,64 @@ export class SearchComponent implements OnInit {
 
   // private filterTrips() {
   //   this.filteredTrips = this.trips.filter((trip) => {
-  //     if (!this.selectedCheckboxes.length) {
-  //       trip.cost <= this.enteredCost;
+  //     const hasSelectedCheckboxes = this.selectedCheckboxes.length > 0;
+  //     const hasEnteredCost = !!this.enteredCost;
+  //     const startDateValue: string = this.startDate.nativeElement.value;
+  //     const endDateValue: string = this.endDate.nativeElement.value;
+  //     const isDateEntered: boolean = !!startDateValue && !!endDateValue;
+
+  //     if (!hasSelectedCheckboxes && !hasEnteredCost && !isDateEntered) {
+  //       return true;
   //     }
-  //     if (!this.enteredCost) {
-  //       this.selectedCheckboxes.includes(trip.title);
-  //     } 
-  //     if (!this.enteredCost && !this.selectedCheckboxes.length) {
-  //       return
-  //     } else {
-  //       this.selectedCheckboxes.includes(trip.title) && trip.cost <= this.enteredCost
+
+  //     const matchesCheckboxes = hasSelectedCheckboxes && this.selectedCheckboxes.includes(trip.title);
+  //     const matchesCost = hasEnteredCost && trip.cost <= this.enteredCost;
+  //     const matchesDates = isDateEntered && (trip.startDate === startDateValue) && (trip.endDate === endDateValue);
+
+  //     if (hasSelectedCheckboxes && hasEnteredCost && isDateEntered) {
+  //       return matchesCheckboxes && matchesCost && matchesDates;
+  //     } else if (hasSelectedCheckboxes && isDateEntered) {
+  //       return matchesCheckboxes && matchesDates;
+  //     } else if (hasEnteredCost && isDateEntered) {
+  //       return matchesCost && matchesDates;
+  //     } else if (hasSelectedCheckboxes && hasEnteredCost) {
+  //       return matchesCheckboxes && matchesCost;
+  //     } else if (hasSelectedCheckboxes) {
+  //       return matchesCheckboxes;
+  //     } else if (hasEnteredCost) {
+  //       return matchesCost;
+  //     } else if (isDateEntered) {
+  //       return matchesDates;
   //     }
+  //     return;
   //   });
   //   this.updateDisplayedTrips();
   // }
+
   private filterTrips() {
     this.filteredTrips = this.trips.filter((trip) => {
-      const hasSelectedCheckboxes = this.selectedCheckboxes.length > 0;
-      const hasEnteredCost = !!this.enteredCost;
-      //czy jest data wpisana
-
-      if (!hasSelectedCheckboxes && !hasEnteredCost) {
-        return true;
-      }
-
-      const matchesCheckboxes = hasSelectedCheckboxes && this.selectedCheckboxes.includes(trip.title);
-      const matchesCost = hasEnteredCost && trip.cost <= this.enteredCost;
-
-      if (hasSelectedCheckboxes && hasEnteredCost) {
-        return matchesCheckboxes && matchesCost;
-      } else if (hasSelectedCheckboxes) {
-        return matchesCheckboxes;
-      } else if (hasEnteredCost) {
-        return matchesCost;
-      }
-      return;
+      const startDateValue: string = this.startDate.nativeElement.value;
+      const endDateValue: string = this.endDate.nativeElement.value;
+  
+      const matchesCheckboxes = this.selectedCheckboxes.length === 0 || this.selectedCheckboxes.includes(trip.title);
+      const matchesCost = !this.enteredCost || trip.cost <= this.enteredCost;
+      const matchesDates = (!startDateValue && !endDateValue) || (trip.startDate === startDateValue && trip.endDate === endDateValue);
+  
+      return matchesCheckboxes && matchesCost && matchesDates;
     });
+  
     this.updateDisplayedTrips();
   }
+  
   onDateChange(startDate: HTMLInputElement, endDate: HTMLInputElement) {
-    console.log('start date', startDate.value, 'end date', endDate.value);
+    // console.log('start date', startDate.value, 'end date', endDate.value);
+    // this.displayedTrips.forEach((trip) => {
+    //   console.log(trip.startDate === startDate.value);
+    //   console.log('start date:', this.startDate.nativeElement.value);
+    //   console.log('end date: ', this.endDate.nativeElement.value);
+      
+    // })
+    this.filterTrips();
   }
   // private filterTripsByPrice(cost: number) {
   //   this.displayedTrips = this.filteredTrips.filter((trip) => 

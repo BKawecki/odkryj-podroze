@@ -3,4 +3,6 @@ export interface Trip {
     country: string;
     url: string;
     cost: number;
+    startDate: string;
+    endDate: string;
 }
