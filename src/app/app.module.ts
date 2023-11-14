@@ -23,6 +23,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { RegisterComponent } from './register/register.component';
+import {MatMenuModule} from '@angular/material/menu';
 
 const appRoutes: Routes = [
   { path: 'users', component: LoginComponent},
@@ -58,7 +59,8 @@ const appRoutes: Routes = [
     MatInputModule,
     MatCardModule,
     RouterModule.forRoot(appRoutes),
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,21 +7,27 @@
         </a>
       </div>
       <span class="header__example-spacer"></span>
-      <button
-        mat-icon-button
-        class="example-icon"
-        aria-label="Example icon-button with menu icon"
-      >
-        <mat-icon>menu</mat-icon>
-      </button>
-      <button
+      <!-- <button
         mat-icon-button
         class="example-icon"
         aria-label="Example icon-button with menu icon"
         [routerLink]="'users'"
       >
         <mat-icon>person</mat-icon>
+      </button> -->
+      <button
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with menu icon"
+        [matMenuTriggerFor]="menu"
+      >
+        <mat-icon>person</mat-icon>
       </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="'users'">Zaloguj się </button>
+        <button mat-menu-item [routerLink]="'register'">Zarejestruj się</button>
+        <button mat-menu-item>Panel użytkownika</button>
+      </mat-menu>
     </mat-toolbar-row>
   </mat-toolbar>
 </div>
