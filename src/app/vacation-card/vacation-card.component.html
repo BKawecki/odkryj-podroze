@@ -1,10 +1,10 @@
-<mat-card class="example-card" [ngStyle]="{'width': width}">
+<mat-card class="example-card" [ngStyle]="{'width': width}" #vacationCard>
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>{{ title }}</mat-card-title>
       <mat-card-subtitle>{{ country }}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image [src]="img" alt="Photo of Madrid landscape">
+    <img mat-card-image [src]="img" alt="Photo of {{ title }} landscape">
     <mat-card-content>
       <p>
         Wycieczka do: {{title}}
@@ -17,6 +17,6 @@
       </p>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-raised-button color="primary">ZAREZERWUJ</button>
+        <button mat-raised-button color="primary" (click)="reserveCard(vacationCard)">ZAREZERWUJ</button>
     </mat-card-actions>
 </mat-card>

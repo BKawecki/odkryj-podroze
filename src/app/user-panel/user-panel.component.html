@@ -1,0 +1,13 @@
+<div class="user-panel">
+    <div class="user-panel__container">
+        <div class="user-panel__title">
+            <h2>MOJE REZERWACJE</h2>
+        </div>
+        <div class="user-panel__reservations">
+            <ul class="user-panel__trips">
+                <li *ngFor="let card of reservedVacationCards"> {{ card }} </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<app-vacation-card *ngIf="reservedVacationCards.length === 0" (reserveCard)="onReserveClicked($event)"></app-vacation-card>

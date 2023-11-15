@@ -24,11 +24,13 @@ import { LoginComponent } from './login/login.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { RegisterComponent } from './register/register.component';
 import {MatMenuModule} from '@angular/material/menu';
+import { UserPanelComponent } from './user-panel/user-panel.component';
 
 const appRoutes: Routes = [
   { path: 'users', component: LoginComponent},
   { path: '', component: SearchComponent},
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  { path: 'user-panel', component: UserPanelComponent }
 ];
 
 
@@ -39,7 +41,8 @@ const appRoutes: Routes = [
     SearchComponent,
     VacationCardComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    UserPanelComponent
   ],
   imports: [
     BrowserModule,

@@ -34,16 +34,18 @@
                 </mat-form-field>
             </form>              
         </div>
-        <mat-chip-listbox multiple class="search__options">
+        <!-- <mat-chip-listbox multiple class="search__options">
             <mat-chip-option *ngFor="let option of tripOptions">
                 {{ option }}
             </mat-chip-option>
-        </mat-chip-listbox>
+        </mat-chip-listbox> -->
     </div>
     <div class="search__cards">
-        <app-vacation-card 
-        *ngFor="let trip of displayedTrips"
-        [width]="'300px'" [img]="trip.url " [title]="trip.title" [country]="trip.country" [cost]="trip.cost" [startDate]="trip.startDate" [endDate]="trip.endDate"></app-vacation-card>
+        <div class="search__card">
+            <app-vacation-card 
+            *ngFor="let trip of displayedTrips"
+            [width]="'300px'" [img]="trip.url " [title]="trip.title" [country]="trip.country" [cost]="trip.cost" [startDate]="trip.startDate" [endDate]="trip.endDate"></app-vacation-card>
+        </div>
         <div class="search__paginator">
         <mat-paginator #paginator
             [length]="this.filteredTrips.length"

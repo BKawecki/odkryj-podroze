@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-vacation-card',
@@ -14,19 +14,9 @@ export class VacationCardComponent {
   @Input() startDate =  '';
   @Input() endDate = '';
 
-  // get formattedStartDate(): string {
-  //   return this.formatDate(this.startDate);
-  // }
+  @Output() outputCard = new EventEmitter<any>();
 
-  // get formattedEndDate(): string {
-  //   return this.formatDate(this.endDate);
-  // }
-
-  // private formatDate(date: Date): string {
-  //   const day = date.getDate().toString().padStart(2, '0');
-  //   const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  //   const year = date.getFullYear();
-
-  //   return `${month}-${day}-${year}`;
-  // }
+  reserveCard(card: any) {
+    this.outputCard.emit(card);
+  }
 }

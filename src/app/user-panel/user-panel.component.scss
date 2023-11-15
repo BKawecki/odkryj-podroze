@@ -1,0 +1,15 @@
+.user-panel {
+    &__container {
+        max-width: 1140px;
+        margin: 5% auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+    }
+    &__title {
+        h2 {
+            font-size: 36px;
+        }
+    }
+}
