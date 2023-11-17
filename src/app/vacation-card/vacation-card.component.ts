@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { VacationService } from '../vacation.service';
 
 @Component({
   selector: 'app-vacation-card',
@@ -14,9 +15,9 @@ export class VacationCardComponent {
   @Input() startDate =  '';
   @Input() endDate = '';
 
-  @Output() outputCard = new EventEmitter<any>();
+  @Output() buttonClick: EventEmitter<void> = new EventEmitter<void>();
 
-  reserveCard(card: any) {
-    this.outputCard.emit(card);
+  emitButtonClick() {
+    this.buttonClick.emit();
   }
 }

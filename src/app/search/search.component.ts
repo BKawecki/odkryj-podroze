@@ -5,6 +5,7 @@ import { take } from 'rxjs';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatInput } from '@angular/material/input';
 import { MatEndDate, MatStartDate } from '@angular/material/datepicker';
+import { VacationService } from '../vacation.service';
 
 @Component({
   selector: 'app-search',
@@ -24,7 +25,7 @@ export class SearchComponent implements OnInit {
   tripOptions = ['All-inclusive', 'Last minute', 'City Break'];
   selectedCheckboxes: Array<string> = [];
 
-  constructor(private searchService: SearchService) {
+  constructor(private searchService: SearchService, private vacationService: VacationService) {
     searchService
       .getTrips()
       .pipe(take(1))
@@ -42,6 +43,12 @@ export class SearchComponent implements OnInit {
     this.paginator.page.subscribe(() => {
       this.updateDisplayedTrips();
     });
+  }
+
+  onButtonClick(trip: Trip) {
+    this.vacationService.addSelectedTrip(trip);
+    const selectedTrip = this.displayedTrips.indexOf(trip);
+    this.displayedTrips.splice(selectedTrip, 1);
   }
 
   updateDisplayedTrips() {

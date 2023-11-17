@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { VacationService } from '../vacation.service';
+import { Trip } from '../models/trip';
 
 @Component({
   selector: 'app-user-panel',
@@ -6,9 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-panel.component.scss']
 })
 export class UserPanelComponent {
-  reservedVacationCards: any[] = [];
+  selectedTrips: Trip[] = [];
 
-  onReserveClicked(cardData: any) {
-    this.reservedVacationCards.push(cardData);
+  constructor(private vacationService: VacationService) {
+    this.selectedTrips = vacationService.selectedTrips;
   }
 }

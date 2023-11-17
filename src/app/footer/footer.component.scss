@@ -1,0 +1,44 @@
+.footer {
+  &__toolbar {
+    padding: 15px 10px;
+    &_logo {
+      a {
+        display: flex;
+      }
+    }
+  }
+  &__example-spacer {
+    flex: 1 1 auto;
+  }
+  &__contact {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    a, mat-icon {
+        text-decoration: none;
+        color: white;
+        transition: color .3s;
+    }
+    &:hover {
+        a, mat-icon {
+            color: rgb(154, 208, 255);
+        }
+    }
+  }
+}
+.example-container {
+  width: 500px;
+  height: 300px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  padding: 20px;
+}

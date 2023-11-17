@@ -44,7 +44,8 @@
         <div class="search__card">
             <app-vacation-card 
             *ngFor="let trip of displayedTrips"
-            [width]="'300px'" [img]="trip.url " [title]="trip.title" [country]="trip.country" [cost]="trip.cost" [startDate]="trip.startDate" [endDate]="trip.endDate"></app-vacation-card>
+            [width]="'300px'" [img]="trip.url " [title]="trip.title" [country]="trip.country" [cost]="trip.cost" [startDate]="trip.startDate" [endDate]="trip.endDate" (buttonClick)="onButtonClick(trip)">
+        </app-vacation-card>
         </div>
         <div class="search__paginator">
         <mat-paginator #paginator

@@ -25,6 +25,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { RegisterComponent } from './register/register.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { UserPanelComponent } from './user-panel/user-panel.component';
+import { FooterComponent } from './footer/footer.component';
 
 const appRoutes: Routes = [
   { path: 'users', component: LoginComponent},
@@ -42,7 +43,8 @@ const appRoutes: Routes = [
     VacationCardComponent,
     LoginComponent,
     RegisterComponent,
-    UserPanelComponent
+    UserPanelComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
