@@ -1,12 +1,21 @@
 <div class="user-panel">
-    <div class="user-panel__container">
-        <div class="user-panel__title">
-            <h2>MOJE REZERWACJE</h2>
-        </div>
-        <div class="user-panel__reservations" *ngIf="selectedTrips">
-            <app-vacation-card 
-            *ngFor="let trip of selectedTrips"
-            [width]="'300px'" [img]="trip.url " [title]="trip.title" [country]="trip.country" [cost]="trip.cost" [startDate]="trip.startDate" [endDate]="trip.endDate"></app-vacation-card>
-        </div>
+  <div class="user-panel__container">
+    <div class="user-panel__title">
+      <h2>MOJE REZERWACJE</h2>
     </div>
+    <div class="user-panel__reservations" *ngIf="selectedTrips">
+      <app-vacation-card
+        *ngFor="let trip of selectedTrips"
+        [width]="'300px'"
+        [img]="trip.url"
+        [title]="trip.title"
+        [country]="trip.country"
+        [cost]="trip.cost"
+        [startDate]="trip.startDate"
+        [endDate]="trip.endDate"
+        [trip]="trip"
+        (buttonClick)="onCancelButtonClick(trip)"
+      ></app-vacation-card>
+    </div>
+  </div>
 </div>

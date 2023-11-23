@@ -5,4 +5,5 @@ export interface Trip {
     cost: number;
     startDate: string;
     endDate: string;
+    isReserved: boolean;
 }

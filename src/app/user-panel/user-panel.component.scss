@@ -12,4 +12,10 @@
             font-size: 36px;
         }
     }
+    &__reservations {
+        display: flex;
+        gap: 45px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }

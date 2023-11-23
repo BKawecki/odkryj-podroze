@@ -1,18 +1,15 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { SearchService } from '../services/search.service';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Trip } from '../models/trip';
-import { take } from 'rxjs';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatInput } from '@angular/material/input';
-import { MatEndDate, MatStartDate } from '@angular/material/datepicker';
-import { VacationService } from '../vacation.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { VacationService } from '../services/vacation.service';
+import TRIPS from 'src/assets/karty/wycieczki';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
   @ViewChild('startDate', { static: true }) startDate!: ElementRef;
   @ViewChild('endDate', { static: true }) endDate!: ElementRef;
@@ -25,16 +22,12 @@ export class SearchComponent implements OnInit {
   tripOptions = ['All-inclusive', 'Last minute', 'City Break'];
   selectedCheckboxes: Array<string> = [];
 
-  constructor(private searchService: SearchService, private vacationService: VacationService) {
-    searchService
-      .getTrips()
-      .pipe(take(1))
-      .subscribe((trip) => {
-        this.trips = trip;
-        this.filterPlace(this.trips);
-      });
-    this.filteredTrips = this.trips;
-    this.displayedTrips = this.filteredTrips;
+  constructor(private vacationService: VacationService) {
+    this.trips = TRIPS
+    this.filteredTrips = [...this.trips];
+    this.filterReservedTrips();
+    this.displayedTrips = [...this.filteredTrips];
+    this.filterPlace(this.filteredTrips);
   }
 
   ngOnInit(): void {
@@ -45,10 +38,22 @@ export class SearchComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+      console.log('ondestroy');
+  }
+
+  filterReservedTrips() {
+    let reservedTrips = this.vacationService.selectedTrips;
+    this.filteredTrips = this.trips.filter(trip => !reservedTrips.includes(trip));
+  }
+
   onButtonClick(trip: Trip) {
     this.vacationService.addSelectedTrip(trip);
-    const selectedTrip = this.displayedTrips.indexOf(trip);
-    this.displayedTrips.splice(selectedTrip, 1);
+    const selectedFilteredTrip = this.filteredTrips.indexOf(trip);
+    const selectedDisplayedTrip = this.displayedTrips.indexOf(trip);
+    this.filteredTrips.splice(selectedFilteredTrip, 1);
+    this.displayedTrips.splice(selectedDisplayedTrip, 1);
+    console.log(this.trips);
   }
 
   updateDisplayedTrips() {
@@ -84,42 +89,6 @@ export class SearchComponent implements OnInit {
       this.filterTrips();
   }
 
-  // private filterTrips() {
-  //   this.filteredTrips = this.trips.filter((trip) => {
-  //     const hasSelectedCheckboxes = this.selectedCheckboxes.length > 0;
-  //     const hasEnteredCost = !!this.enteredCost;
-  //     const startDateValue: string = this.startDate.nativeElement.value;
-  //     const endDateValue: string = this.endDate.nativeElement.value;
-  //     const isDateEntered: boolean = !!startDateValue && !!endDateValue;
-
-  //     if (!hasSelectedCheckboxes && !hasEnteredCost && !isDateEntered) {
-  //       return true;
-  //     }
-
-  //     const matchesCheckboxes = hasSelectedCheckboxes && this.selectedCheckboxes.includes(trip.title);
-  //     const matchesCost = hasEnteredCost && trip.cost <= this.enteredCost;
-  //     const matchesDates = isDateEntered && (trip.startDate === startDateValue) && (trip.endDate === endDateValue);
-
-  //     if (hasSelectedCheckboxes && hasEnteredCost && isDateEntered) {
-  //       return matchesCheckboxes && matchesCost && matchesDates;
-  //     } else if (hasSelectedCheckboxes && isDateEntered) {
-  //       return matchesCheckboxes && matchesDates;
-  //     } else if (hasEnteredCost && isDateEntered) {
-  //       return matchesCost && matchesDates;
-  //     } else if (hasSelectedCheckboxes && hasEnteredCost) {
-  //       return matchesCheckboxes && matchesCost;
-  //     } else if (hasSelectedCheckboxes) {
-  //       return matchesCheckboxes;
-  //     } else if (hasEnteredCost) {
-  //       return matchesCost;
-  //     } else if (isDateEntered) {
-  //       return matchesDates;
-  //     }
-  //     return;
-  //   });
-  //   this.updateDisplayedTrips();
-  // }
-
   private filterTrips() {
     this.filteredTrips = this.trips.filter((trip) => {
       const startDateValue: string = this.startDate.nativeElement.value;
@@ -135,26 +104,9 @@ export class SearchComponent implements OnInit {
     this.updateDisplayedTrips();
   }
   
-  onDateChange(startDate: HTMLInputElement, endDate: HTMLInputElement) {
-    // console.log('start date', startDate.value, 'end date', endDate.value);
-    // this.displayedTrips.forEach((trip) => {
-    //   console.log(trip.startDate === startDate.value);
-    //   console.log('start date:', this.startDate.nativeElement.value);
-    //   console.log('end date: ', this.endDate.nativeElement.value);
-      
-    // })
+  onDateChange() {
     this.filterTrips();
   }
-  // private filterTripsByPrice(cost: number) {
-  //   this.displayedTrips = this.filteredTrips.filter((trip) => 
-  //     cost >= trip.cost
-  //   );
-  //   // if (this.displayedTrips.length === 0) {
-  //   //   this.displayedTrips = this.filteredTrips;
-  //   //   this.updateDisplayedTrips();
-  //   // }
-  //   this.updateDisplayedTrips();
-  // }
 
   private filterPlace(trips: Trip[]) {
     trips.forEach((trip) => {

@@ -86,4 +86,11 @@
     margin-top: 20px;
     align-self: center;
   }
+  @media (max-width: 1140px) {
+      flex-direction: column;
+      align-items: center;
+      &__container {
+        margin-bottom: 40px;
+      }
+    }
 }

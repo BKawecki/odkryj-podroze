@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { VacationService } from '../vacation.service';
+import { VacationService } from '../services/vacation.service';
 import { Trip } from '../models/trip';
 
 @Component({
@@ -12,5 +12,9 @@ export class UserPanelComponent {
 
   constructor(private vacationService: VacationService) {
     this.selectedTrips = vacationService.selectedTrips;
+  }
+
+  onCancelButtonClick(trip: Trip) {
+    this.vacationService.cancelReservation(trip);
   }
 }

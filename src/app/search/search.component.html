@@ -1,58 +1,94 @@
 <div class="search">
-    <div class="search__container">
-        <div class="search__title">
-            <p>Wyszukaj podróż</p>
-        </div>
-        <div class="search__from">
-            <p>Skąd:</p>
-            <div class="search__from_places">
-                <mat-checkbox [value]="place" class="search__place" *ngFor="let place of fromPlaces">{{ place }}</mat-checkbox>
-            </div>
-        </div>
-        <div class="search__destination">
-            <p>Dokąd:</p>
-            <mat-checkbox [value]="place" (change)="selectPlace($event)" class="search__place" *ngFor="let place of toPlaces">{{ place }}</mat-checkbox>
-        </div>
-        <div class="search__when">
-            <p>Kiedy:</p>
-            <mat-form-field>
-                <mat-label>Wybierz daty podróży</mat-label>
-                <mat-date-range-input [rangePicker]="picker">
-                  <input matStartDate placeholder="Wylot" #startDate>
-                  <input matEndDate placeholder="Przylot" (dateChange)="onDateChange(startDate, endDate)" #endDate>
-                </mat-date-range-input>
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-date-range-picker #picker></mat-date-range-picker>
-              </mat-form-field>
-        </div>
-        <div class="search__budget">
-            <p>Budżet:</p>
-            <form class="example-form">
-                <mat-form-field class="example-full-width">
-                  <mat-label>Twój budżet</mat-label>
-                  <input matInput placeholder="Wpisz kwotę w złotówkach" [(ngModel)]="enteredCost" (input)="onInput()" name="costInput">
-                </mat-form-field>
-            </form>              
-        </div>
-        <!-- <mat-chip-listbox multiple class="search__options">
+  <div class="search__container">
+    <div class="search__title">
+      <p>Wyszukaj podróż</p>
+    </div>
+    <div class="search__from">
+      <p>Skąd:</p>
+      <div class="search__from_places">
+        <mat-checkbox
+          [value]="place"
+          class="search__place"
+          *ngFor="let place of fromPlaces"
+          >{{ place }}</mat-checkbox
+        >
+      </div>
+    </div>
+    <div class="search__destination">
+      <p>Dokąd:</p>
+      <mat-checkbox
+        [value]="place"
+        (change)="selectPlace($event)"
+        class="search__place"
+        *ngFor="let place of toPlaces"
+        >{{ place }}</mat-checkbox
+      >
+    </div>
+    <div class="search__when">
+      <p>Kiedy:</p>
+      <mat-form-field>
+        <mat-label>Wybierz daty podróży</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate placeholder="Wylot" #startDate />
+          <input
+            matEndDate
+            placeholder="Przylot"
+            (dateChange)="onDateChange()"
+            #endDate
+          />
+        </mat-date-range-input>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+    </div>
+    <div class="search__budget">
+      <p>Budżet:</p>
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Twój budżet</mat-label>
+          <input
+            matInput
+            placeholder="Wpisz kwotę w złotówkach"
+            [(ngModel)]="enteredCost"
+            (input)="onInput()"
+            name="costInput"
+          />
+        </mat-form-field>
+      </form>
+    </div>
+    <!-- <mat-chip-listbox multiple class="search__options">
             <mat-chip-option *ngFor="let option of tripOptions">
                 {{ option }}
             </mat-chip-option>
         </mat-chip-listbox> -->
+  </div>
+  <div class="search__cards">
+    <div class="search__card">
+      <app-vacation-card
+        *ngFor="let trip of displayedTrips"
+        [width]="'300px'"
+        [img]="trip.url"
+        [title]="trip.title"
+        [country]="trip.country"
+        [cost]="trip.cost"
+        [startDate]="trip.startDate"
+        [endDate]="trip.endDate"
+        [trip]="trip"
+        (buttonClick)="onButtonClick(trip)"
+      >
+      </app-vacation-card>
     </div>
-    <div class="search__cards">
-        <div class="search__card">
-            <app-vacation-card 
-            *ngFor="let trip of displayedTrips"
-            [width]="'300px'" [img]="trip.url " [title]="trip.title" [country]="trip.country" [cost]="trip.cost" [startDate]="trip.startDate" [endDate]="trip.endDate" (buttonClick)="onButtonClick(trip)">
-        </app-vacation-card>
-        </div>
-        <div class="search__paginator">
-        <mat-paginator #paginator
-            [length]="this.filteredTrips.length"
-            [pageSize]="6"
-            aria-label="Select page">
-        </mat-paginator>
-        </div>
+    <div class="search__paginator">
+      <mat-paginator
+        #paginator
+        [length]="this.filteredTrips.length"
+        [pageSize]="6"
+        aria-label="Select page"
+      >
+      </mat-paginator>
     </div>
+  </div>
 </div>
