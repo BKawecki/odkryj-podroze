@@ -21,9 +21,11 @@ export class SearchComponent implements OnInit, OnDestroy {
   toPlaces: Array<string> = [];
   tripOptions = ['All-inclusive', 'Last minute', 'City Break'];
   selectedCheckboxes: Array<string> = [];
+  reservedTrips!: Array<Trip>;
 
   constructor(private vacationService: VacationService) {
     this.trips = TRIPS
+    this.reservedTrips = this.vacationService.selectedTrips;
     this.filteredTrips = [...this.trips];
     this.filterReservedTrips();
     this.displayedTrips = [...this.filteredTrips];
@@ -43,8 +45,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   filterReservedTrips() {
-    let reservedTrips = this.vacationService.selectedTrips;
-    this.filteredTrips = this.trips.filter(trip => !reservedTrips.includes(trip));
+    this.filteredTrips = this.trips.filter(trip => !this.reservedTrips.includes(trip));
   }
 
   onButtonClick(trip: Trip) {
@@ -97,8 +98,9 @@ export class SearchComponent implements OnInit, OnDestroy {
       const matchesCheckboxes = this.selectedCheckboxes.length === 0 || this.selectedCheckboxes.includes(trip.title);
       const matchesCost = !this.enteredCost || trip.cost <= this.enteredCost;
       const matchesDates = (!startDateValue && !endDateValue) || (trip.startDate === startDateValue && trip.endDate === endDateValue);
+      const isNotReserved = !this.reservedTrips.includes(trip);
   
-      return matchesCheckboxes && matchesCost && matchesDates;
+      return matchesCheckboxes && matchesCost && matchesDates && isNotReserved;
     });
   
     this.updateDisplayedTrips();

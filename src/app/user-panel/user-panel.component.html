@@ -4,6 +4,7 @@
       <h2>MOJE REZERWACJE</h2>
     </div>
     <div class="user-panel__reservations" *ngIf="selectedTrips">
+      <p *ngIf="selectedTrips.length === 0">Nie masz jeszcze zarezerwowanej wycieczki</p>
       <app-vacation-card
         *ngFor="let trip of selectedTrips"
         [width]="'300px'"
