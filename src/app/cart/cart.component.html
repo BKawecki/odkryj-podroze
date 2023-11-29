@@ -1,0 +1,99 @@
+<mat-stepper
+  class="example-stepper"
+  [orientation]="(stepperOrientation | async)!"
+>
+  <mat-step [stepControl]="firstFormGroup" label="Wypełnij swoje dane">
+    <form [formGroup]="firstFormGroup">
+      <mat-form-field>
+        <mat-label>Imię</mat-label>
+        <input
+          matInput
+          placeholder="Imię"
+          formControlName="firstCtrl"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Nazwisko</mat-label>
+        <input
+          matInput
+          placeholder="Nazwisko"
+          formControlName="secondCtrl"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Numer telefonu</mat-label>
+        <input
+          matInput
+          placeholder="Numer telefonu"
+          formControlName="secondCtrl"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Adres email</mat-label>
+        <input
+          matInput
+          placeholder="Email"
+          formControlName="thirdCtrl"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Adres zamieszkania</mat-label>
+        <input
+          matInput
+          placeholder="Adres zamieszkania"
+          formControlName="fourthCtrl"
+          required
+        />
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Następny krok</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" label="Wypełnij dane płatnicze">
+    <form [formGroup]="secondFormGroup">
+      <mat-form-field>
+        <mat-label>Numer karty kredytowej</mat-label>
+        <input
+          matInput
+          formControlName="fifthCtrl"
+          placeholder="np. 1111 2222 3333 4444"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Data ważności karty kredytowej</mat-label>
+        <input
+          matInput
+          formControlName="sixthCtrl"
+          placeholder="np. 01/26"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Kod CVV</mat-label>
+        <input
+          matInput
+          formControlName="seventhCtrl"
+          placeholder="np. 987"
+          required
+        />
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Wstecz</button>
+        <button mat-button matStepperNext>Następny krok</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Opłacone</ng-template>
+    <p>Przetwarzamy płatność, potwierdzenie wyślemy mailowo.</p>
+    <div>
+      <button mat-button matStepperPrevious>Wstecz</button>
+    </div>
+  </mat-step>
+</mat-stepper>

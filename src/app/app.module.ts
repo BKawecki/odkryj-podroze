@@ -26,12 +26,15 @@ import { RegisterComponent } from './register/register.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { UserPanelComponent } from './user-panel/user-panel.component';
 import { FooterComponent } from './footer/footer.component';
+import { CartComponent } from './cart/cart.component';
+import {MatStepperModule} from '@angular/material/stepper';
 
 const appRoutes: Routes = [
   { path: 'users', component: LoginComponent},
   { path: '', component: SearchComponent},
   { path: 'register', component: RegisterComponent },
-  { path: 'user-panel', component: UserPanelComponent }
+  { path: 'user-panel', component: UserPanelComponent },
+  { path: 'cart', component: CartComponent }
 ];
 
 
@@ -44,7 +47,8 @@ const appRoutes: Routes = [
     LoginComponent,
     RegisterComponent,
     UserPanelComponent,
-    FooterComponent
+    FooterComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +69,8 @@ const appRoutes: Routes = [
     MatCardModule,
     RouterModule.forRoot(appRoutes),
     MatPaginatorModule,
-    MatMenuModule
+    MatMenuModule,
+    MatStepperModule
   ],
   providers: [],
   bootstrap: [AppComponent]
