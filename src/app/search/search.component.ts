@@ -54,7 +54,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     const selectedDisplayedTrip = this.displayedTrips.indexOf(trip);
     this.filteredTrips.splice(selectedFilteredTrip, 1);
     this.displayedTrips.splice(selectedDisplayedTrip, 1);
-    console.log(this.trips);
   }
 
   updateDisplayedTrips() {
